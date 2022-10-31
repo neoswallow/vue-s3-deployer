@@ -1,13 +1,15 @@
-FROM node:12-slim
+FROM node:18-slim
 
 LABEL "com.github.actions.name"="vue-s3-deployer"
 LABEL "com.github.actions.description"="Github action for deploy Vue app to Amazon s3 bucket. "
 LABEL "com.github.actions.icon"="archive"
 LABEL "com.github.actions.color"="orange"
 
-LABEL "maintainer"="Lewandy Diloné Bonifacio <lewandydilone1@live.com>"
-LABEL "repository"="https://github.com/lewandy/vue-s3-deployer"
-LABEL version="1.0.0"
+LABEL "original_maintainer"="Lewandy Diloné Bonifacio <lewandydilone1@live.com>"
+LABEL "original_repository"="https://github.com/lewandy/vue-s3-deployer"
+LABEL "maintainer"="Ethan Doh"
+LABEL "repository"="https://github.com/neoswallow/vue-s3-deployer"
+LABEL version="1.0.1"
 
 #Install utilities
 RUN apt-get update && \ 
