@@ -15,3 +15,10 @@ echo "Building application"
 
 # sync files with Amazon S3 bucket app
 aws --region $INPUT_AWS_DEFAULT_REGION s3 sync ./dist s3://$INPUT_AWS_BUCKET_NAME --no-progress --delete --acl public-read
+
+# invalidate index.html
+if [[ $INPUT_AWS_CLOUDFRONT_DIST_ID != '' && $INPUT_AWS_INVALIDATION_PATH != '' ]]; then
+  aws cloudfront create-invalidation \
+      --distribution-id $INPUT_AWS_CLOUDFRONT_DIST_ID \
+      --paths "$INPUT_AWS_INVALIDATION_PATH"
+fi

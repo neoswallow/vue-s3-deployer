@@ -14,6 +14,8 @@ In your workflow, define a step which refers to the action:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
           AWS_BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME }}
+          AWS_CLOUDFRONT_DIST_ID: ${{ secrets.AWS_CLOUDFRONT_DIST_ID }}
+          AWS_INVALIDATION_PATH: ${{ secrets.AWS_INVALIDATION_PATH }}
           APP_SOURCE_CODE: ./
           BUILD_COMMAND: "npm run build"
 ```
@@ -26,8 +28,10 @@ These settings are environment variables that the action will use for make the d
 | ------------- | ------------- | ------------- | ------------- |
 | `AWS_ACCESS_KEY_ID` | AWS Access Key. [More info here.](https://docs.aws.amazon.com/general/latest/gr/managing-aws-access-keys.html) | **Yes** | N/A |
 | `AWS_SECRET_ACCESS_KEY` | AWS Secret Access Key. [More info here.](https://docs.aws.amazon.com/general/latest/gr/managing-aws-access-keys.html) | **Yes** | N/A |
-| `AWS_BUCKET_NAME` | The name of the bucket you're syncing to. For example, `vue-action`. | **Yes** | N/A |
 | `AWS_DEFAULT_REGION` | The region of the bucket. Set to `us-east-1` by default. [Full list of regions here.](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-
+| `AWS_BUCKET_NAME` | The name of the bucket you're syncing to. For example, `vue-action`. | **Yes** | N/A |
+| `AWS_CLOUDFRONT_DIST_ID` | CloudFront Distribution ID to create invalidation on.
+| `AWS_INVALIDATION_PATH` | Path to invalidate.
 | `APP_SOURCE_CODE` | This is the source code that will be deployed | **yes** | ./
 | `BUILD_COMMAND` | Command used to build the application : https://cli.vuejs.org/guide/cli-service.html#vue-cli-service-build | **yes** | production
 
@@ -61,6 +65,8 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
           AWS_BUCKET_NAME: awesome-bucket
+          AWS_CLOUDFRONT_DIST_ID: ${{ secrets.AWS_CLOUDFRONT_DIST_ID }}
+          AWS_INVALIDATION_PATH: ${{ secrets.AWS_INVALIDATION_PATH }}
           APP_SOURCE_CODE: ./example
           BUILD_COMMAND: "npm run build"
 ```
